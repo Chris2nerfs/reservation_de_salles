@@ -1,0 +1,206 @@
+html{
+    height: 100%;
+}
+
+body{
+    
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+.bg-primary{
+    color: black;
+    background-image: linear-gradient(to right, #97c7fb, #78d9ff, #68e9f8, #7cf6e3, #a7ffc9);
+}
+.table
+{
+    border: 1px solid black;
+}
+
+.titre 
+{
+    margin: auto;
+    text-align: center;
+}
+
+.logo
+{
+    height: 100%;
+    width: 100%;
+}
+.shadow 
+{
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow:         3px 3px 5px 6px #ccc;
+}
+
+.border-10
+{
+    border-style: solid;
+    border-width: 1%;
+    padding: 4%;
+    margin-bottom: 0.5%;
+}
+
+.border_admin_user
+{
+    border-style: solid;
+    border-width: 3px;
+    padding: 1%;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-bottom: 1%;
+    font-size: 150%;
+}
+
+.toggle.ios, .toggle-on.ios, .toggle-off.ios
+{
+     border-radius: 20px;
+}
+
+.toggle.ios .toggle-handle 
+{
+     border-radius: 20px; 
+}
+
+
+.container1
+{
+    position: relative;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid black;
+}
+
+/* reservationJour */
+
+.underContainer
+{
+    position: relative;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid black;
+}
+.underContainerTitle
+{
+    position: relative;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    
+    border: 1px solid black;
+}
+.underContainerText
+{
+    position: relative;
+    
+    border: 1px solid black;
+}
+.underContainer306
+{
+    position: relative;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid black;
+}
+.underContainerTitle306
+{
+    position: relative;
+    border: 1px solid black;
+}
+.underContainerText306
+{
+    position: relative;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid black;
+}
+.container2
+{
+    position: relative;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid black;
+}
+
+/* reservationJour */
+/* modif par Abdi */
+
+.footer
+{
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.administrateur{
+    color: green;
+}
+
+.utilisateur{
+    color: red;
+}
+
+@import "compass/css3";
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  
+  -webkit-box-flex: row wrap;
+  justify-content: space-between;
+}
+
+.flex-item {
+  padding: 5px;
+  width: 200px;
+  height: 100px;
+  
+  
+  line-height: 100px;
+  color: black;
+  font-size: 1em;
+  text-align: left;
+}
+
+.panelSalle{
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+
+.nav-link{
+    text-align: right;
+}
+.input-group-prepend{
+    margin-right: -46px;
+}
+input[type=radio]{
+    transform:scale(1.5);
+}
+
+.border_panel {
+    border-style: solid;
+    border-color: #99999999;
+    border-width: 1px;
+    -webkit-box-shadow: 8px 8px 20px 0px rgba(153,153,153,0.5);
+    -moz-box-shadow: 8px 8px 20px 0px rgba(153,153,153,0.5);
+    box-shadow: 8px 8px 20px 0px rgba(153,153,153,0.5);
+}

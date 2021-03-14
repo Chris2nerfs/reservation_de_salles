@@ -1,0 +1,88 @@
+# Version Docker
+version: "3.8"
+
+services:
+    # Serveur Web [Apache:2 + PHP:8.0.3]
+    webserver:
+        # Image personnalisée sur la base de l'image officielle PHP
+        image: chris2nerfs/apache2-php:8.0.3
+        networks:
+            - dev
+        container_name: Apache-PHP
+        # Expose HTTP/S sur les ports [80]; [443] de l'hôte
+        ports:
+            - "80:80"
+            - "403:403"
+        # Lien vers le service [MySQL]
+        restart: always
+        links:
+            - mysqldb
+            - maildev
+        volumes:
+            # Racine du site
+            - ./www:/var/www/html
+            # Configuration PHP
+            - ./config/php/php.ini:/usr/local/etc/php/php.ini:ro
+            # Configuration de l'hôte virtuel [Apache:2]
+            - ./config/vhosts:/etc/apache2/sites-enabled:ro
+        sysctls:
+            # Autorise le système d'exploitation à lier le port [80] à des utilisateurs non privilégiés (ex: non root)
+            - net.ipv4.ip_unprivileged_port_start=0
+            # Exécute les services client/serveur, ou en tant qu'utilisateur [UID 1000]
+        user: "${UID:-1000}:${UID:-1000}"
+
+    # Serveur MySQL [ SGBD ]
+    mysqldb:
+        # Basé sur l'image officielle
+        image: mysql
+        networks:
+            - dev
+        container_name: MySQL
+        # Expose MySQL sur le port par défaut [3306] de l'hôte
+        ports:
+            - "3306:3306"
+        # Les données de la base de données sont stockées dans un volume nommé
+        restart: always
+        volumes:
+            - mysqldb-data:/var/lib/mysql
+        environment:
+            # Définit le mot de passe de l'utilisateur racine mysql_db
+            MYSQL_ROOT_PASSWORD: Admin789
+
+    # Interface base de données mysql_db
+    phpmyadmin:
+        # Basé sur l'image officielle
+        image: phpmyadmin
+        networks:
+            - dev
+        container_name: PHPmyAdmin
+        # Lien vers le service [MySQL]
+        links:
+            - mysqldb
+        environment:
+            # Définit le nom d'hôte de la base de données (à l'intérieur du réseau privé Docker-Composer)
+            PMA_HOST: mysqldb
+            # Définit le port de la base de données
+            PMA_PORT: 3306
+        # Expose phpMyAdmin sur le port [9000] de l'hôte
+        ports:
+            - "9000:80"
+
+    # Outils de test SMTP
+    maildev:
+        # Basé sur l'image officielle
+        image: maildev/maildev
+        networks:
+            - dev
+        container_name: MailDev
+        ports:
+            # SMTP port
+            - "1025:1025"
+            # Web interface
+            - "8025:8025"
+
+networks:
+    dev:
+
+volumes:
+    mysqldb-data:
